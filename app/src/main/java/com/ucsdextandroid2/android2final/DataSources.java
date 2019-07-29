@@ -29,7 +29,7 @@ public class DataSources {
         this.dataApi = new Retrofit.Builder()
                 .baseUrl("https://developer.nps.gov/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(new OkHttpClient.Builder().addInterceptor(logger).build())
+              //  .client(new OkHttpClient.Builder().addInterceptor(logger).build())
                 .build()
                 .create(DataAPI.class);
 
