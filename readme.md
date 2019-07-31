@@ -6,7 +6,7 @@ The goal of this assignment is to review all the concepts we have covered so far
  1. Room Database [Example from week 1](https://github.com/ucsd-ext-android-rja/android-2-week-1-database) 
  2. Paging Lists [Example from week 2](https://github.com/ucsd-ext-android-rja/android-2-week-2-loadmore/blob/inclass-final/app/src/main/java/com/ucsdextandroid2/petfinder/PetsDataSource.kt)
  3. Fragment Navigation [Example from week 3](https://github.com/ucsd-ext-android-rja/android-2-week-3-navigation/blob/inclass-final/app/src/main/res/navigation/activity_instagram_nav.xml)
- 4. Retrofit [Example from class 1](https://github.com/ucsd-ext-android-rja/android-1-week-4-map/blob/master/app/src/main/java/com/ucsdextandroid1/snapmap/com.ucsdextandroid2.android2final.DataSources.java)
+ 4. Retrofit [Example from class 1](https://github.com/ucsd-ext-android-rja/android-1-week-4-map/blob/master/app/src/main/java/com/ucsdextandroid1/snapmap/com.ucsdextandroid2.android2final.data.DataSources.java)
 
 #### Requirements: 
  - Screens: at least 2 different fragments

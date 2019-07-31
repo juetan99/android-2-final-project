@@ -20,8 +20,7 @@ public class DataSources {
     private DataAPI dataApi;
 
     private DataSources(){
-        Gson gson= new GsonBuilder()
-                .create();
+        Gson gson= new GsonBuilder().create();
 
         HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
         logger.level(HttpLoggingInterceptor.Level.BODY);
@@ -29,10 +28,9 @@ public class DataSources {
         this.dataApi = new Retrofit.Builder()
                 .baseUrl("https://developer.nps.gov/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
-              //  .client(new OkHttpClient.Builder().addInterceptor(logger).build())
+                .client(new OkHttpClient.Builder().addInterceptor(logger).build())
                 .build()
                 .create(DataAPI.class);
-
     }
 
     public static DataSources getInstance() {
@@ -65,7 +63,7 @@ public class DataSources {
     }
 
     private interface DataAPI{
-        @GET("parks?api_key=" + BuildConfig.api_key)
+        @GET("parks?fields=images&parkCode=auca&api_key=" + BuildConfig.api_key)
         Call<ParkResponse> getParks();
     }
 

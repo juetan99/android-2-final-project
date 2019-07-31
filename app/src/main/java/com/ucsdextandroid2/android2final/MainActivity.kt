@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
 
         DataSources.getInstance().getParks(object : DataSources.Callback<List<Park>> {
             override fun onDataFetched(data: List<Park>?) {
-                Log.d("test", "Parks" + data?.size)
+                Log.d("test", "Parks: " + data?.size)
+                Log.d("name", data?.get(0)?.id)
+                Log.d("image", data?.get(0)?.images?.get(0)?.url)
             }
 
         })

@@ -6,38 +6,44 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 
-@Entity
+import java.util.List;
+
 public class Park {
     @SerializedName("id")
-    @PrimaryKey
-    @NonNull
     private String id;
     @SerializedName("fullName")
     private String name;
+    @SerializedName("states")
+    private String states;
     @SerializedName("description")
     private String description;
     @SerializedName("url")
     private String url;
     @SerializedName("latLong")
     private String latLong;
-
-    @ColumnInfo(name = "latitude")
+    @SerializedName("images")
+    private List<ParkImage> images;
     public double lat;
-    @ColumnInfo(name="longitude")
     public double lng;
 
-    public Park(String id, String name, String description, String url, String latLong){
+    public Park(String id, String states, String name, String description, String url, String latLong, List<ParkImage> images){
         this.id = id;
+        this.states = states;
         this.name = name;
         this.description = description;
         this.url = url;
         this.latLong = latLong;
+        this.images = images;
         splitLatLng(latLong);
 
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getStates() {
+        return states;
     }
 
     public String getName() {
@@ -70,4 +76,12 @@ public class Park {
 
     }
 
+    public List<ParkImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ParkImage> images) {
+        this.images = images;
+    }
 }
+
