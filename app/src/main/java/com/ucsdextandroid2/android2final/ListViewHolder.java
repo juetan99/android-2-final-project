@@ -1,5 +1,6 @@
 package com.ucsdextandroid2.android2final;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class ListViewHolder extends RecyclerView.ViewHolder{
 
     public void bind(Park park){
         this.currentPark = park;
+
+        Log.d("ListViewHolder", "Park Name" + park.getName());
 
         //Load image
         Picasso.get().load(park.getImages().get(0).getUrl()).into(imageView);

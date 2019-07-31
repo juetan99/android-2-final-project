@@ -1,6 +1,7 @@
 package com.ucsdextandroid2.android2final;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     private ListAdapter adapter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
