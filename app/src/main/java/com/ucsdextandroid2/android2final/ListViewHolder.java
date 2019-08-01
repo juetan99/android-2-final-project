@@ -39,7 +39,6 @@ public class ListViewHolder extends RecyclerView.ViewHolder{
 
         Log.d("ListViewHolder", "Park Name" + park.getName());
 
-        //Load image
         Picasso.get().load(park.getImages().get(0).getUrl()).into(imageView);
         tvTitle.setText(park.getName());
         tvSubtitle.setText(park.getStates());

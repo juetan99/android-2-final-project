@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DataSources {
 
@@ -25,10 +26,18 @@ public class DataSources {
         HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
         logger.level(HttpLoggingInterceptor.Level.BODY);
 
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor(logger)
+                .build();
+
         this.dataApi = new Retrofit.Builder()
                 .baseUrl("https://developer.nps.gov/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(new OkHttpClient.Builder().addInterceptor(logger).build())
+                //.client(new OkHttpClient.Builder().addInterceptor(logger).build())
+                .client(okHttpClient)
                 .build()
                 .create(DataAPI.class);
     }
@@ -63,7 +72,7 @@ public class DataSources {
     }
 
     private interface DataAPI{
-        @GET("parks?fields=images&parkCode=auca&api_key=" + BuildConfig.api_key)
+        @GET("parks?fields=images&api_key=" + BuildConfig.api_key)
         Call<ParkResponse> getParks();
     }
 

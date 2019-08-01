@@ -1,5 +1,6 @@
 package com.ucsdextandroid2.android2final;
 
+import android.util.Log;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,16 +13,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
     // itemclick listener
 
-
-
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListViewHolder holder = ListViewHolder.inflate(parent);
-
-        //setClickListener
-
-        return holder;
+        return ListViewHolder.inflate(parent);
     }
 
     @Override
@@ -35,6 +30,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
     }
 
     public void setList(List<Park> list){
+        Log.d("test", "Park count: " + list.size());
         this.items = list;
+        notifyDataSetChanged();
     }
 }
