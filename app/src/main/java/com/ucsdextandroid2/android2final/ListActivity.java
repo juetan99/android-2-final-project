@@ -1,6 +1,7 @@
 package com.ucsdextandroid2.android2final;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.AttributeSet;
@@ -30,6 +31,15 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.setAdapter(listAdapter);
 
         getAPIdata();
+
+        listAdapter.setClickListener(new OnItemClickListener<Park>() {
+            @Override
+            public void onItemClicked(Park item) {
+                Intent intent = new Intent(ListActivity.this, ParkDetailActivity.class);
+                intent.putExtra("park", item);
+                startActivity(intent);
+            }
+        });
     }
 
 

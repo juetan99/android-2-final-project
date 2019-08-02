@@ -9,14 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
+
     private List<Park> items = new ArrayList<>();
 
-    // itemclick listener
+    private OnItemClickListener<Park> clickListener;
 
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return ListViewHolder.inflate(parent);
+        ListViewHolder listViewHolder = ListViewHolder.inflate(parent);
+        listViewHolder.setClickListener(item ->{
+            if (clickListener != null)
+                clickListener.onItemClicked(item);
+        });
+        return listViewHolder;
     }
 
     @Override
@@ -33,5 +39,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
         Log.d("test", "Park count: " + list.size());
         this.items = list;
         notifyDataSetChanged();
+    }
+
+    public void setClickListener(OnItemClickListener<Park> clickListener) {
+        this.clickListener = clickListener;
     }
 }

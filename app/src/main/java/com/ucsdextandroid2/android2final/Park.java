@@ -1,5 +1,7 @@
 package com.ucsdextandroid2.android2final;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -8,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Park {
+public class Park implements Parcelable {
     @SerializedName("id")
     private String id;
     @SerializedName("fullName")
@@ -25,6 +27,7 @@ public class Park {
     private List<ParkImage> images;
     public double lat;
     public double lng;
+    private String imageUrl;
 
     public Park(String id, String states, String name, String description, String url, String latLong, List<ParkImage> images){
         this.id = id;
@@ -35,7 +38,7 @@ public class Park {
         this.latLong = latLong;
         this.images = images;
         splitLatLng(latLong);
-
+        this.imageUrl = images.get(0).getUrl();
     }
 
     public String getId() {
@@ -83,5 +86,43 @@ public class Park {
     public void setImages(List<ParkImage> images) {
         this.images = images;
     }
+
+    public String getImageUrl(){ return imageUrl;}
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(imageUrl);
+    }
+
+    protected Park(Parcel in){
+        id = in.readString();
+        name=in.readString();
+        description = in.readString();
+        imageUrl = in.readString();
+    }
+
+    public static final Creator<Park> CREATOR =new Creator<Park>() {
+        @Override
+        public Park createFromParcel(Parcel source) {
+            return new Park(source);
+        }
+
+        @Override
+        public Park[] newArray(int size) {
+            return new Park[0];
+        }
+    };
 }
 
