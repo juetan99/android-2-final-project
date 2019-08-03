@@ -37,10 +37,25 @@ public class ListActivity extends AppCompatActivity {
             public void onItemClicked(Park item) {
                 Intent intent = new Intent(ListActivity.this, ParkDetailActivity.class);
                 intent.putExtra("park", item);
+
                 startActivity(intent);
+
+                ParkEntity parkEntity = new ParkEntity();
+                parkEntity.id = item.getId();
+                parkEntity.name = item.getName();
+                parkEntity.imageUrl = item.getImages().get(0).getUrl();
+
+                addParktoDB(parkEntity);
             }
         });
     }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
+
 
 
     private void getAPIdata(){
@@ -52,5 +67,10 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void addParktoDB(ParkEntity parkEntity){
+        AppDatabase.getAppDatabase(this).parkDao().insertAll(parkEntity);
     }
 }

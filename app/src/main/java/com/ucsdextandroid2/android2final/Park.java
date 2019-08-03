@@ -23,8 +23,11 @@ public class Park implements Parcelable {
     private String url;
     @SerializedName("latLong")
     private String latLong;
+    @SerializedName("weatherInfo")
+    private String weather;
     @SerializedName("images")
     private List<ParkImage> images;
+
     public double lat;
     public double lng;
     private String imageUrl;
@@ -69,6 +72,14 @@ public class Park implements Parcelable {
         return latLong;
     }
 
+    public String getWeather() {
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
     private void splitLatLng(String latLng){
         String[] latLngArray = latLng.split(",");
         String[] latArray = latLngArray[0].split(":");
@@ -104,6 +115,7 @@ public class Park implements Parcelable {
         dest.writeString(name);
         dest.writeString(description);
         dest.writeString(imageUrl);
+        dest.writeString(weather);
     }
 
     protected Park(Parcel in){
@@ -111,6 +123,7 @@ public class Park implements Parcelable {
         name=in.readString();
         description = in.readString();
         imageUrl = in.readString();
+        weather = in.readString();
     }
 
     public static final Creator<Park> CREATOR =new Creator<Park>() {

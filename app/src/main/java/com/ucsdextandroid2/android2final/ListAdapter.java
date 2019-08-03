@@ -36,7 +36,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
     }
 
     public void setList(List<Park> list){
-        Log.d("test", "Park count: " + list.size());
         this.items = list;
         notifyDataSetChanged();
     }

@@ -8,9 +8,12 @@ import java.util.List;
 
 @Dao
 public interface ParkDao {
-    @Query("SELECT * FROM Park")
-    List<Park> getAllParks();
+    @Query("SELECT * FROM ParkEntity")
+    List<ParkEntity> getAllParks();
+
+    @Query("SELECT * FROM ParkEntity WHERE id = :parkId")
+    List<ParkEntity> getParkById(String parkId);
 
     @Insert
-    void insertAll(Park...parks);
+    void insertAll(ParkEntity...parkEntities);
 }
