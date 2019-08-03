@@ -2,6 +2,7 @@ package com.ucsdextandroid2.android2final;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public interface ParkDao {
     @Query("SELECT * FROM ParkEntity WHERE id = :parkId")
     List<ParkEntity> getParkById(String parkId);
 
-    @Insert
+    @Insert(onConflict =  OnConflictStrategy.REPLACE)
     void insertAll(ParkEntity...parkEntities);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(ParkEntity parkEntities);
 }

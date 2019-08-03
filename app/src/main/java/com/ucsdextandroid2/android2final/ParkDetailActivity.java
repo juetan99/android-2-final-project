@@ -35,6 +35,7 @@ public class ParkDetailActivity extends AppCompatActivity {
             tvDescription.setVisibility(View.GONE);
             tvWeather.setText(park.getWeather());
             tvWeather.setVisibility(View.GONE);
+
             List<ParkEntity> parkEntityList= AppDatabase.getAppDatabase(this).parkDao().getParkById(park.getId());
 
             Picasso.get().load(parkEntityList.get(0).imageUrl).into(imageView);
@@ -49,4 +50,5 @@ public class ParkDetailActivity extends AppCompatActivity {
     public void toggle_content_weather(View v){
         tvWeather.setVisibility(tvWeather.isShown()? View.GONE : View.VISIBLE);
     }
+
 }

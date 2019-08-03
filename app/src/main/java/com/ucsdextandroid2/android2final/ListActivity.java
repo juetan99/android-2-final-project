@@ -45,6 +45,7 @@ public class ListActivity extends AppCompatActivity {
                 parkEntity.name = item.getName();
                 parkEntity.imageUrl = item.getImages().get(0).getUrl();
 
+                // add to database
                 addParktoDB(parkEntity);
             }
         });
@@ -71,6 +72,6 @@ public class ListActivity extends AppCompatActivity {
 
 
     private void addParktoDB(ParkEntity parkEntity){
-        AppDatabase.getAppDatabase(this).parkDao().insertAll(parkEntity);
+            AppDatabase.getAppDatabase(this).parkDao().insert(parkEntity);
     }
 }
