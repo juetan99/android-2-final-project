@@ -72,7 +72,7 @@ public class DataSources {
     }
 
     private interface DataAPI{
-        @GET("parks?fields=images&api_key=" + BuildConfig.api_key)
+        @GET("parks?fields=images&limit=20&api_key=" + BuildConfig.api_key)
         Call<ParkResponse> getParks();
     }
 
